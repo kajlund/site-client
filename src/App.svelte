@@ -2,6 +2,7 @@
   import router from 'page'
 
   import routes from './lib/routes'
+  import Header from './components/Header.svelte'
 
   let page;
   let params;
@@ -24,6 +25,7 @@
 </script>
 
 <main>
+  <Header />
   <svelte:component this={page} params={params} />
 </main>
 

@@ -3,7 +3,7 @@
 </script>
 
 <div class="page">
-  <h1>About</h1>
+  <h1>Blog</h1>
 
   <p>
     Elit ullamco excepteur irure non magna voluptate excepteur cillum sint labore officia laborum. Non non ex

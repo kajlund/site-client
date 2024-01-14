@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 :root{
   /* Variables */
   --light-color: #fff;
@@ -88,7 +88,75 @@ body.light-theme {
 }
 
 #app {
-  max-width: 1280px;
+  max-width: 128rem;
   margin: 0 auto;
   padding: 2rem;
+}
+
+.container{
+  max-width: 128rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.page {
+  padding-top: 6rem;
+}
+
+.place-items-center{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen-sm-hidden{
+  display: none;
+}
+
+.moon-icon{
+  display: none;
+}
+
+.light-theme .sun-icon{
+  display: none;
+}
+
+.light-theme .moon-icon{
+  display: block;
+}
+
+.fancy-border{
+  position: relative;
+  overflow: hidden;
+}
+
+.fancy-border::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: var(--gradient-color);
+    background-size: 50% 100%;
+    z-index: 5;
+}
+
+.fancy-border span{
+    position: relative;
+    z-index: 10;
+    display: inline-flex;
+    background-color: var(--secondary-background-color);
+    padding: .6rem 1.5rem;
+}
+
+/* Fancy button animation effect */
+.btn.fancy-border:hover::before{
+  animation: animate_border .75s linear infinite
+}
+
+@keyframes animate_border{
+  to{
+    transform:translateX(-50%)
+  }
 }
