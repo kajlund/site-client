@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 :root{
   /* Variables */
   --light-color: #fff;
@@ -47,6 +46,10 @@ body {
   background-color: var(--primary-background-color);
   letter-spacing: 1px;
   transition: background-color .25s, color .25s;
+}
+
+h1 {
+  font-size: 3.2rem;
 }
 
 a {
@@ -159,4 +162,21 @@ body.light-theme {
   to{
     transform:translateX(-50%)
   }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f4254;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2e303b;
 }
