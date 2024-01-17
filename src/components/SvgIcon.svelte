@@ -5,6 +5,7 @@
   export let color = '#b1b1b1'
   export let name = ''
   export let size = '2.4rem'
+  export let style = ''
 
   let d = Icon[name]
 
@@ -12,16 +13,17 @@
   let width = size
 </script>
 
-<svg class="icon" {width} {height}
+<svg {style} class="icon" {width} {height}
   viewBox="0 0 24 24" fill={fill}
   xmlns="http://www.w3.org/2000/svg"
 >
   <path d={d} stroke={color} stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round" />
+    stroke-linecap="round" stroke-linejoin="round"
+  />
 </svg>
 
 <style>
-  .icon{
+  .icon {
     position: relative;
     display:inline-block;
   }

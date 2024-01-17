@@ -1,5 +1,5 @@
 <script>
-  import Icon from './Icon.svelte'
+  import SvgIcon from './SvgIcon.svelte'
 
   export let caption = 'MenuItem'
   export let icon = ''
@@ -9,27 +9,21 @@
 
 <li>
   <a href={url} class:selected={selected}>
-    {#if icon}<Icon name={icon} --size="1.6rem" --top="0.4rem" />{/if}
+    {#if icon}
+      <SvgIcon name={icon} size="1.6rem" style="margin-right: 0.5rem" />
+    {/if}
     {caption}
   </a>
 </li>
 
 <style>
-  i {
-    font-size: 1.6rem;
-    padding-top: .4rem;
-    margin-right: 0.2rem;
-  }
   a {
     display: flex;
-  }
-  a:hover {
-    color: var(--light-color);
+    align-items: center;
   }
 
+  a:hover,
   a.selected {
     color: var(--light-color);
   }
-
-
 </style>

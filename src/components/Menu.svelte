@@ -1,91 +1,121 @@
 <script>
+  import page from 'page'
+
   import MenuItem from './MenuItem.svelte'
+  import MenuPopup from './MenuPopup.svelte'
+  import MenuToggleIcon from './MenuToggleIcon.svelte';
+
+  let showPopupMenu = false
+  let wideScreen = false
+  let width
+
+  function toggleTheme(e) {
+    // console.log(e.detail)
+    document.body.classList.toggle('light-theme')
+  }
+
+  function togglePopupMenu(e) {
+    // console.log(e.detail)
+    showPopupMenu = !showPopupMenu
+  }
+
+  function popupMenuItemSelected(e) {
+    // console.log(e.detail)
+    showPopupMenu = false
+    page(e.detail.url)
+  }
+
+  $: if (width > 992) {
+    wideScreen = true
+    showPopupMenu = false
+  } else {
+    wideScreen = false
+  }
+  let activePage = 'home'
 </script>
 
-<div class="menu" id="menu">
-  <ul class="list">
-    <MenuItem caption="Home" icon="Home" selected="true" url="/" />
-    <MenuItem caption="Blog" icon="" selected="" url="/blog" />
-    <MenuItem caption="Resources" icon="" selected="" url="/resources" />
-    <MenuItem caption="About" icon="Info" selected="" url="/about" />
+<svelte:window bind:innerWidth={width} />
 
-    <li class="list-item screen-lg-hidden">
-      <a href="./signin.html" class="list-link">Sign in</a>
-    </li>
-    <li class="list-item screen-lg-hidden">
-      <a href="./signup.html" class="list-link">Sign up</a>
-    </li>
+{#if wideScreen}
+  <div class="menu">
+    <ul class="list">
+      <MenuItem
+        caption="Home"
+        icon=""
+        selected={activePage === 'home'}
+        url="/"
+      />
+      <MenuItem
+        caption="Blog"
+        icon=""
+        selected={activePage === 'blog'}
+        url="/blog"
+      />
+      <MenuItem
+        caption="Resources"
+        icon=""
+        selected={activePage === 'resources'}
+        url="/resources"
+      />
+      <MenuItem
+        caption="About"
+        icon="info"
+        selected={activePage === 'about'}
+        url="/about"
+      />
+    </ul>
+  </div>
+
+  <ul class="list list-right">
+    <MenuToggleIcon
+      icon="sun"
+      altIcon="moon"
+      on:toggle={toggleTheme}
+    />
+    <MenuItem
+      caption="Sign in"
+      icon=""
+      selected={activePage === 'logon'}
+      url="/logon"
+    />
   </ul>
-</div>
+{:else}
+  <div class="list list-right">
+    <MenuToggleIcon
+      icon="sun"
+      altIcon="moon"
+      active={showPopupMenu}
+      on:toggle={toggleTheme}
+    />
+    <MenuToggleIcon
+      icon="menu"
+      altIcon="close"
+      on:toggle={togglePopupMenu}
+    />
+  </div>
+{/if}
 
-<div class="list list-right">
-  <button class="btn place-items-center" id="theme-toggle-btn">
-    <i class="ri-sun-line sun-icon"></i>
-    <i class="ri-moon-line moon-icon"></i>
-  </button>
-
-  <button class="btn place-items-center screen-lg-hidden menu-toggle-icon" id="menu-toggle-icon">
-    <i class="ri-menu-3-line open-menu-icon"></i>
-    <i class="ri-close-line close-menu-icon"></i>
-  </button>
-
-  <a href="/logon" class="list-link screen-sm-hidden">Sign in</a>
-</div>
+{#if showPopupMenu}
+  <MenuPopup on:popupMenuItemSelected={popupMenuItemSelected} />
+{/if}
 
 <style>
-  .menu{
-    position: absolute;
-    top: 8.5rem;
+  .menu {
+    position: static;
+    top: 7rem;
     right: 1.5rem;
-    width: 23rem;
-    padding: 1.5rem;
-    background-color:var(--secondary-background-color);
-    opacity: 0;
-    transform: scale(0);
+    width: initial;
+    padding: initial;
+    background-color: transparent;
+    opacity: 1;
+    transform: scale(1);
     transition: opacity .25s ease-in;
   }
-  .list{
+
+  .list {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: var(--gap);
   }
-
-  .menu > .list{
-    flex-direction: column;
-  }
-
-  .list-link:hover,
-  .btn:hover,
-  .btn:hover span{
-    color: var(--light-color);
-  }
-
-  @media screen and (min-width: 1024px) {
-    .menu{
-      position: static;
-      width: initial;
-      padding: initial;
-      background-color: transparent;
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .menu > .list {
-      flex-direction: row;
-    }
-
-    .screen-lg-hidden{
-      display: none;
-    }
-
-    .screen-sm-hidden{
-      display: block;
-    }
-
-    .sign-up-btn{
-      padding: 4px;
-    }
-
-  }
-
 </style>
