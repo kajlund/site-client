@@ -5,6 +5,8 @@
   import MenuPopup from './MenuPopup.svelte'
   import MenuToggleIcon from './MenuToggleIcon.svelte';
 
+  import nav from '../lib/navStore'
+
   let showPopupMenu = false
   let wideScreen = false
   let width
@@ -31,7 +33,7 @@
   } else {
     wideScreen = false
   }
-  let activePage = 'home'
+  $: activePage = $nav.activePage
 </script>
 
 <svelte:window bind:innerWidth={width} />

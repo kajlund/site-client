@@ -1,6 +1,6 @@
 <script>
   import router from 'page'
-
+  import nav from './lib/navStore'
   import routes from './lib/routes'
   import Header from './components/Header.svelte'
 
@@ -16,7 +16,8 @@
       },
       () => {
         page = route.component
-        console.log('page: ', page)
+        nav.setActivePage(route.pageId)
+        // console.log('page: ', route.pageId)
       }
     );
   });

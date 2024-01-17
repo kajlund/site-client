@@ -9,17 +9,21 @@ export default [
   {
     path: '/',
     component: Home,
+    pageId: 'home'
   },
   {
     path: '/blog',
     component: Blog,
+    pageId: 'blog'
   },
   {
     path: '/about',
-    component: About
+    component: About,
+    pageId: 'about'
   },
   {
     path: '*',
-    component: NotFound
+    component: NotFound,
+    pageId: 'notfound'
   }
 ]
