@@ -7,33 +7,34 @@
 
   import nav from '../lib/navStore'
 
-  let showPopupMenu = false
+  let darkTheme = true
   let wideScreen = false
   let width
 
   function toggleTheme(e) {
     // console.log(e.detail)
+    darkTheme = !darkTheme
     document.body.classList.toggle('light-theme')
   }
 
   function togglePopupMenu(e) {
     // console.log(e.detail)
-    showPopupMenu = !showPopupMenu
+    nav.togglePopupMenu()
   }
 
   function popupMenuItemSelected(e) {
     // console.log(e.detail)
-    showPopupMenu = false
+    nav.setPopupMenu(false)
     page(e.detail.url)
   }
 
+  $: activePage = $nav.activePage
   $: if (width > 992) {
     wideScreen = true
-    showPopupMenu = false
+    nav.setPopupMenu(false)
   } else {
     wideScreen = false
   }
-  $: activePage = $nav.activePage
 </script>
 
 <svelte:window bind:innerWidth={width} />
@@ -86,18 +87,19 @@
     <MenuToggleIcon
       icon="sun"
       altIcon="moon"
-      active={showPopupMenu}
+      active={!darkTheme}
       on:toggle={toggleTheme}
     />
     <MenuToggleIcon
       icon="menu"
       altIcon="close"
+      active={$nav.showPopupMenu}
       on:toggle={togglePopupMenu}
     />
   </div>
 {/if}
 
-{#if showPopupMenu}
+{#if $nav.showPopupMenu}
   <MenuPopup on:popupMenuItemSelected={popupMenuItemSelected} />
 {/if}
 

@@ -13,6 +13,16 @@ const store = {
     navStore.update((values) => {
       return { ...values, activePage: pageId }
     })
+  },
+  setPopupMenu: (visible) => {
+    navStore.update((values) => {
+      return { ...values, showPopupMenu: visible }
+    })
+  },
+  togglePopupMenu: () => {
+    navStore.update((values) => {
+      return { ...values, showPopupMenu: !values.showPopupMenu }
+    })
   }
 }
 
