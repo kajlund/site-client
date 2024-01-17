@@ -1,9 +1,9 @@
 <script>
-  import Icon from './Icon.svelte'
+  import SvgIcon from './SvgIcon.svelte'
 </script>
 
 <a href="/">
-  <Icon name="Cloud" --size="3.4rem" />
+  <SvgIcon name="cloud" size="3.4rem" color="#fff" />
   <h2 class="logo">kajlund</h2>
 </a>
 
