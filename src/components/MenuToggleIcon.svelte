@@ -8,7 +8,7 @@
   export let icon = ''
   export let altIcon = ''
   export let active = false
-  export let size = '2.4rem'
+  export let size = '2.8rem'
 
   function toggleSelected() {
     // console.log('toggleselected')
@@ -17,14 +17,19 @@
   }
 </script>
 
-<button on:click={toggleSelected}>
+<button class="btn" on:click={toggleSelected}>
 {#if active}
-    <SvgIcon name={altIcon}  {size} />
+  <SvgIcon name={altIcon}  {size} />
 {:else}
   <SvgIcon name={icon} {size} />
 {/if}
 </button>
 
 <style>
+  .btn {
+    display: inline-flex;
+    vertical-align: middle;
+    cursor: pointer;
+  }
 
 </style>

@@ -50,7 +50,7 @@
       />
       <MenuItem
         caption="About"
-        icon="info"
+        icon=""
         selected={activePage === 'about'}
         url="/about"
       />
