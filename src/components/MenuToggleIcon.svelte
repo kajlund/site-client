@@ -11,7 +11,7 @@
   export let size = '2.4rem'
 
   function toggleSelected() {
-    console.log('toggleselected')
+    // console.log('toggleselected')
     active = !active
     dispatch('toggle', { active })
   }

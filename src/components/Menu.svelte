@@ -7,20 +7,8 @@
 
   import nav from '../lib/navStore'
 
-  let darkTheme = true
   let wideScreen = false
   let width
-
-  function toggleTheme(e) {
-    // console.log(e.detail)
-    darkTheme = !darkTheme
-    document.body.classList.toggle('light-theme')
-  }
-
-  function togglePopupMenu(e) {
-    // console.log(e.detail)
-    nav.togglePopupMenu()
-  }
 
   function popupMenuItemSelected(e) {
     // console.log(e.detail)
@@ -73,7 +61,7 @@
     <MenuToggleIcon
       icon="sun"
       altIcon="moon"
-      on:toggle={toggleTheme}
+      on:toggle={nav.toggleTheme}
     />
     <MenuItem
       caption="Sign in"
@@ -87,14 +75,14 @@
     <MenuToggleIcon
       icon="sun"
       altIcon="moon"
-      active={!darkTheme}
-      on:toggle={toggleTheme}
+      active={!$nav.darkTheme}
+      on:toggle={nav.toggleTheme}
     />
     <MenuToggleIcon
       icon="menu"
       altIcon="close"
       active={$nav.showPopupMenu}
-      on:toggle={togglePopupMenu}
+      on:toggle={nav.togglePopupMenu}
     />
   </div>
 {/if}

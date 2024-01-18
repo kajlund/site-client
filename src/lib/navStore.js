@@ -2,7 +2,8 @@ import { writable, get } from 'svelte/store'
 
 const INITIAL = {
   activePage: 'home',
-  showPopupMenu: false
+  showPopupMenu: false,
+  darkTheme: true
 }
 
 const navStore = writable(INITIAL)
@@ -22,6 +23,13 @@ const store = {
   togglePopupMenu: () => {
     navStore.update((values) => {
       return { ...values, showPopupMenu: !values.showPopupMenu }
+    })
+  },
+  toggleTheme: () => {
+    navStore.update((values) => {
+      document.body.classList.toggle('light-theme')
+      console.log(values.darkTheme)
+      return { ...values, darkTheme: !values.darkTheme }
     })
   }
 }
